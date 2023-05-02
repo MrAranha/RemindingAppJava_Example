@@ -5,12 +5,12 @@ public class escolhaMeses {
     public static Meses mesEscolha() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Mês do ano:");
-        int mesIndex = 0;
+        int mesIndex = 1;
         for (Meses meses : Meses.values()) {
             System.out.print("\n" + mesIndex + ": " + meses);
             mesIndex++;
         }
-
+        System.out.println("");
         int value = scanner.nextInt();
         scanner.close();
         switch (value) {
