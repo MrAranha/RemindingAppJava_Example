@@ -2,8 +2,7 @@ import Enums.*;
 import java.util.*;
 
 public class escolhaMeses {
-    public static Meses mesEscolha() {
-        Scanner scanner = new Scanner(System.in);
+    public static Meses mesEscolha(Scanner scanner) {
         System.out.print("Mês do ano:");
         int mesIndex = 1;
         for (Meses meses : Meses.values()) {
@@ -12,7 +11,6 @@ public class escolhaMeses {
         }
         System.out.println("");
         int value = scanner.nextInt();
-        scanner.close();
         switch (value) {
             case 1:
                 return Meses.JANEIRO;

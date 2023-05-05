@@ -36,7 +36,7 @@ public class Main {
                     String nome = scanner.next();
                     System.out.print("Insira valor de seu ganho:");
                     double value = scanner.nextDouble();
-                    Meses mescolha = escolhaMeses.mesEscolha();
+                    Meses mescolha = escolhaMeses.mesEscolha(scanner);
                     Ganho newGanho = new Ganho(nome, value, mescolha);
                     ganho[ganhoIndex] = newGanho;
                     ganhoIndex++;
@@ -46,26 +46,34 @@ public class Main {
                     String nomeGasto = scanner.next();
                     System.out.print("Insira valor de seu gasto:");
                     double valueGasto = scanner.nextDouble();
-                    Meses mescolhaGasto = escolhaMeses.mesEscolha();
+                    Meses mescolhaGasto = escolhaMeses.mesEscolha(scanner);
                     Gasto newgasto = new Gasto(nomeGasto, valueGasto, mescolhaGasto);
                     gasto[gastoIndex] = newgasto;
                     gastoIndex++;
                     break;
                 case 3:
                     System.out.print("Escolha o Mês para o relatório:");
-                    Meses mescolhaRelatorio = escolhaMeses.mesEscolha();
+                    Meses mescolhaRelatorio = escolhaMeses.mesEscolha(scanner);
 
-                    System.out.print("Relatório: \n");
+                    System.out.println("Relatório de Gasto: \n");
                     for (int i = 0; i < gasto.length; i++) {
-                        if (gasto[i].Mes == mescolhaRelatorio)
-                            System.out.print("Gasto: " + gasto[i].NomeGasto + "\n" + "Valor: " + gasto[i].ValorGasto);
+                      if (gasto[i] != null)
+                        if (gasto[i].Mes != null)
+                            if (gasto[i].Mes == mescolhaRelatorio)
+                                System.out.println("Gasto: " + gasto[i].NomeGasto + "\n" + "Valor: " + gasto[i].ValorGasto);
                     }
-
                     System.out.println("=================================");
+                    System.out.println("Relatório de Ganhos:");
                     for (int j = 0; j < ganho.length; j++) {
-                        if (ganho[j].Mes == mescolhaRelatorio)
-                            System.out.print("Gasto: " + ganho[j].NomeGanho + "\n" + "Valor: " + ganho[j].ValorGanho);
+                      if (ganho[j] != null)
+                        if (ganho[j].Mes != null)
+                            if (ganho[j].Mes == mescolhaRelatorio)
+                                System.out.print("Ganho: " + ganho[j].NomeGanho + "\n" + "Valor: " + ganho[j].ValorGanho);
                     }
+                    double ganhobruto = ganhosEPerdaCalculo.SomaDeGanhosMes(gasto, mescolhaRelatorio) - ganhosEPerdaCalculo.SomaDeGastosMes(ganho, mescolhaRelatorio);
+                    System.out.println("=================================");
+                    System.out.println("Ganho Bruto do Mês: $" + ganhobruto);
+                    Menu = false;
                     break;
                 default:
                     break;
